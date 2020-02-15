@@ -1,0 +1,30 @@
+import argparse
+from typing import Text
+
+import yaml
+import sys 
+import os.path as path
+
+p = path.abspath(path.join(__file__ ,"../../.."))
+sys.path.append(p)
+from src.data.dataset import get_dataset
+from src.features.features import extract_features
+
+def featurize(config_path: Text):
+
+    config = yaml.load(open(config_path), Loader=yaml.FullLoader)
+
+    dataset = get_dataset(config['dataset_csv'], config['dataset_sep'])
+    featured_dataset = extract_features(dataset, config['features_columns_range'], config['target_column'])
+
+    filpath = config['featured_dataset_csv']
+    featured_dataset.to_csv(filpath, index=False, sep = config['dataset_sep'])
+
+
+if __name__ == '__main__':
+
+    args_parser = argparse.ArgumentParser()
+    args_parser.add_argument('--config', dest='config', required=True)
+    args = args_parser.parse_args()
+
+    featurize(config_path=args.config)

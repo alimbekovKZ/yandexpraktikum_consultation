@@ -1,0 +1,55 @@
+experiment_name: experiment_1
+
+base:
+  project: supervise_pipeline
+  name: yandex
+  tags: [experiment_1, dev]
+
+  model:
+    model_name: experiment_1.joblib
+    models_folder: models
+
+  experiments:
+    experiments_folder: experiments
+
+  random_state: 42
+
+split_train_test:
+  folder: experiments
+  train_csv: data/processed/train.csv
+  test_csv: data/processed/test.csv
+  valid_csv: data/processed/valid.csv
+  test_size: 0.2
+  valid_size: 0.25
+  sampler: 'upsample'
+  sampler_rate: 3
+
+featurize:
+  dataset_csv: data/raw/churn.csv
+  featured_dataset_csv: data/interim/featured_churn.csv
+  features_columns_range: ['CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts', 'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Geography', 'Gender']
+  target_column: Exited
+  dataset_sep: ","
+
+train:
+  cv: 5
+  estimator_name: randomforest
+  
+  class_weight: 'balanced'
+  
+  estimators:
+
+    logreg: 
+      param_grid:
+        C: [0.001, 0.01]
+
+    decisionTree: 
+      param_grid:
+        max_depth: [1, 2, 4, 6, 8]
+
+    randomforest:
+      param_grid:
+        n_estimators: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+
+evaluate:
+  metrics_file: eval.txt
