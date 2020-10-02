@@ -1,0 +1,6 @@
+dataset_csv: data/raw/iris.csv
+featured_dataset_csv: data/interim/featured_iris.csv
+features_columns_range:
+- sepal_length
+- petal_length_to_petal_width
+target_column: species

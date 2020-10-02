@@ -1,0 +1,4 @@
+folder: experiments
+test_csv: data/processed/test_iris.csv
+test_size: 0.2
+train_csv: data/processed/train_iris.csv

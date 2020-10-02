@@ -1,0 +1,11 @@
+experiments:
+  experiments_folder: experiments
+model:
+  model_name: model.joblib
+  models_folder: models
+name: iris
+project: iris-demo
+random_state: 42
+tags:
+- solution-0
+- dev
