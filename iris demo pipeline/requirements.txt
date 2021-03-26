@@ -7,4 +7,4 @@ comet_ml==3.0.2
 numpy==1.18.1
 matplotlib==3.0.3
 scikit_learn==0.22.1
-PyYAML==5.3
+PyYAML==5.4
