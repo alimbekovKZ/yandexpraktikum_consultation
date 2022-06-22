@@ -4,7 +4,7 @@ joblib==0.13.2
 typing==3.6.4
 ipywidgets==7.4.2
 comet_ml==3.0.2
-numpy==1.18.1
+numpy==1.22.0
 matplotlib==3.0.3
 scikit_learn==0.22.1
 PyYAML==5.3
